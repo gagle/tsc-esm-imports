@@ -3,7 +3,7 @@
 import { readdir, readFile, writeFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 
-const SPECIFIER_RE = /((?:from|import\()\s*['"])([^'"]+?)(['"])/g;
+const SPECIFIER_RE = /((?:from|import\s|import\()\s*['"])([^'"]+?)(['"])/g;
 const HAS_EXT_RE = /\.(m?[jt]sx?|cjs|cts|json)$/;
 
 function rewrite(source) {

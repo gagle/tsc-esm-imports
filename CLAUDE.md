@@ -15,7 +15,7 @@ pnpm typecheck   # Type-check (tsc --noEmit)
 - **Module**: ESM-only (`"type": "module"`), `moduleResolution: "bundler"`, no `.js` in source imports
 - **Build**: `tsc` + post-build script (`scripts/postbuild.mjs`) adds `.js` to compiled output
 - **Zero-dep**: No runtime dependencies
-- **Package manager**: pnpm
+- **Package manager**: pnpm 10.15
 
 ### File structure
 
@@ -28,16 +28,22 @@ src/
   bin.ts                              # CLI entry point (shebang)
   interfaces/options.interface.ts     # All public types
   *.spec.ts                           # Co-located test files
+scripts/
+  postbuild.mjs                       # Self-hosting: adds .js to own dist output
 ```
+
+### Self-hosting
+
+The package uses itself to build itself. Since the compiled output can't run until extensions are added, `scripts/postbuild.mjs` contains a standalone copy of the rewriting logic. This script's regex must stay in sync with `src/rewrite-specifiers.ts`.
 
 ## Rules and Skills
 
 This repo uses global `~/.claude/` configuration and project-level `.claude/` skills:
 
-- **`~/.claude/rules/typescript.md`** -- TypeScript coding conventions (naming, types, imports, formatting)
-- **`~/.claude/skills/testing/`** -- Testing conventions with 18 enforced rules
-- **`~/.claude/skills/review/`** -- Code review process and evaluation criteria
-- **`.claude/skills/commit/`** -- Composable git workflow: `/commit`, `/commit squash`, `/commit push`, `/commit squash push`
+- **`~/.claude/rules/typescript.md`** -- TypeScript coding conventions
+- **`~/.claude/skills/testing/`** -- Testing conventions
+- **`~/.claude/skills/review/`** -- Code review process
+- **`.claude/skills/commit/`** -- Composable git workflow
 
 ## Conventions
 
@@ -69,11 +75,6 @@ import type { RewriteSpecifiersOptions } from './interfaces/options.interface'; 
 - Prettier: 100 width, single quotes, trailing commas, 2-space indent, LF
 - Commit: `{type}({scope}): {subject}` (conventional commits via commitlint)
 - Scopes: `cli`, `core`, `workspace`
-
-### Pre-commit hooks
-
-- **lint-staged**: ESLint --fix + Prettier --write on staged `.ts` files; Prettier --write on `.json`, `.yaml`, `.yml`, `.md`
-- **commitlint**: Validates conventional commit format with enforced scope enum
 
 ## Verification
 
