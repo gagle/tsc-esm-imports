@@ -6,9 +6,7 @@
     ".": {
       "release-type": "node",
       "package-name": "tsc-esm-imports",
-      "changelog-path": "CHANGELOG.md",
-      "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true
+      "changelog-path": "CHANGELOG.md"
     }
   }
 }
