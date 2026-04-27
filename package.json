@@ -1,6 +1,6 @@
 {
   "name": "tsc-esm-imports",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Fix missing .js extensions in tsc output for Node.js ESM compatibility",
   "author": "Gabriel Llamas",
   "license": "MIT",
