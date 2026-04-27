@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/gagle/tsc-esm-imports/compare/tsc-esm-imports-v0.1.0...tsc-esm-imports-v0.1.1) (2026-04-27)
+
+
+### Bug Fixes
+
+* **workspace:** remove NPM_TOKEN, use OIDC trusted publishing ([43dbf1d](https://github.com/gagle/tsc-esm-imports/commit/43dbf1df9a8e35a4112f38cd249eb3e9419a3bfd))
+
 ## [0.1.0](https://github.com/gagle/tsc-esm-imports/compare/tsc-esm-imports-v0.0.1...tsc-esm-imports-v0.1.0) (2026-04-27)
 
 
